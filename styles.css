@@ -10,8 +10,9 @@
 /* --------------------------------------------------------------------------
    1. CSS Custom Properties / Design Tokens
    -------------------------------------------------------------------------- */
-:root {
-  /* Color Palette - Light Mode (Default) */
+:root,
+[data-theme="light"] {
+  /* Bright Mode Palette (Default) */
   --bg-color: #fbfbfa;
   --bg-surface: #f4f3ef;
   --bg-surface-hover: #ebe9e3;
@@ -49,29 +50,26 @@
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Dark Mode Overrides (Automatic via prefers-color-scheme) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #121211;
-    --bg-surface: #1b1b19;
-    --bg-surface-hover: #242422;
-    --text-primary: #f2f2ee;
-    --text-secondary: #a3a19b;
-    --text-tertiary: #73716b;
-    --border-color: #282826;
-    --border-color-subtle: #20201e;
+/* Dark Mode Overrides (Optional toggle only, default is bright #fbfbfa) */
+[data-theme="dark"] {
+  --bg-color: #121211;
+  --bg-surface: #1b1b19;
+  --bg-surface-hover: #242422;
+  --text-primary: #f2f2ee;
+  --text-secondary: #a3a19b;
+  --text-tertiary: #73716b;
+  --border-color: #282826;
+  --border-color-subtle: #20201e;
 
-    /* Slightly brighter electric blue for high contrast on dark bg */
-    --accent-color: #4963ff;
-    --accent-hover: #677dff;
-    --accent-subtle: rgba(73, 99, 255, 0.15);
-    --focus-ring: rgba(73, 99, 255, 0.5);
+  --accent-color: #4963ff;
+  --accent-hover: #677dff;
+  --accent-subtle: rgba(73, 99, 255, 0.15);
+  --focus-ring: rgba(73, 99, 255, 0.5);
 
-    --color-error: #ff6b6b;
-    --color-error-bg: #2a1818;
-    --color-success: #3dd68c;
-    --color-success-bg: #14281e;
-  }
+  --color-error: #ff6b6b;
+  --color-error-bg: #2a1818;
+  --color-success: #3dd68c;
+  --color-success-bg: #14281e;
 }
 
 /* --------------------------------------------------------------------------
@@ -264,6 +262,48 @@ textarea {
   border-bottom-color: var(--accent-color);
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.65rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background-color: var(--bg-surface);
+}
+
+.theme-toggle svg {
+  flex-shrink: 0;
+}
+
+/* Bright mode (default): show moon icon to allow switching to dark */
+.theme-icon-sun {
+  display: none;
+}
+.theme-icon-moon {
+  display: block;
+}
+
+/* Dark mode (when activated): show sun icon to allow switching back to bright */
+[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
 /* Mobile Nav Toggle Button */
 .nav-toggle {
   display: none;
@@ -419,6 +459,29 @@ textarea {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+}
+
+.project-status-badge {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  letter-spacing: -0.005em;
+}
+
+.project-status-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
 }
 
 .project-link {

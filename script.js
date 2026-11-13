@@ -22,12 +22,33 @@ const FORM_ENDPOINT = "https://formspree.io/f/YOUR_ID";
 
 
 document.addEventListener("DOMContentLoaded", () => {
+  initThemeToggle();
   initMobileNav();
   initScrollSpy();
   initScrollReveal();
   initContactForm();
   initDynamicYear();
 });
+
+
+// ============================================================================
+// 1b. THEME TOGGLE (BRIGHT DEFAULT)
+// ============================================================================
+function initThemeToggle() {
+  const toggleBtn = document.getElementById("theme-toggle");
+  if (!toggleBtn) return;
+
+  // Explicitly default to bright / light mode
+  const savedTheme = localStorage.getItem("portfolio-theme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+
+  toggleBtn.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    localStorage.setItem("portfolio-theme", nextTheme);
+  });
+}
 
 
 // ============================================================================
@@ -240,7 +261,7 @@ function initContactForm() {
     if (FORM_ENDPOINT.includes("YOUR_ID")) {
       displayStatus(
         "error",
-        "Form endpoint is not yet configured. Please follow the instructions to set up your free Formspree ID in script.js, or use the direct email link above."
+        "Form endpoint is not configured yet. Please email me directly at akshitbandi.carrer@gmail.com, or paste your Formspree ID into script.js."
       );
       return;
     }

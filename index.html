@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO & Social Meta Tags -->
   <title>Akshith Bandi &mdash; Computer Science &amp; IoT Undergraduate</title>
-  <meta name="description" content="Portfolio of Akshith Bandi, Computer Science and IoT student at Malla Reddy Vishwavidyapeeth. Exploring full-stack web development, 3D web experiences, and AI-powered solutions.">
+  <meta name="description" content="Portfolio of Akshith Bandi, Computer Science & IoT undergraduate at Malla Reddy Vishwavidyapeeth. Exploring full-stack web development, 3D web experiences, and AI solutions.">
   <meta name="author" content="Akshith Bandi">
   
   <!-- Open Graph / Social Sharing -->
   <meta property="og:title" content="Akshith Bandi &mdash; Portfolio">
   <meta property="og:description" content="Computer Science &amp; IoT student passionate about building interactive web experiences, exploring 3D technologies, and developing creative solutions through code.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://itsme-akshit.github.io/portfolio/">
+  <meta property="og:url" content="https://itsme-akshit.github.io/Portfolio/">
+  <meta property="og:image" content="profile.jpg">
   
   <!-- Google Fonts: Newsreader (Headings) & Inter (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Background Ambient Glow Canvas / Elements -->
+  <div class="ambient-glow ambient-glow-top" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-bottom" aria-hidden="true"></div>
 
   <!-- Skip Link for Accessibility -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -34,6 +39,9 @@
   <header class="site-header" id="top">
     <div class="container header-container">
       <a href="#top" class="brand-link" aria-label="Back to top">
+        <span class="brand-avatar-mini">
+          <img src="profile.jpg" alt="Akshith Bandi mini portrait" class="mini-avatar">
+        </span>
         <span class="brand-name">Akshith Bandi</span>
       </a>
 
@@ -62,9 +70,10 @@
             </a>
           </li>
           <li>
-            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light or dark theme">
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light or dark theme" title="Toggle theme">
               <!-- Sun Icon (shown in dark mode) -->
-              <svg class="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -76,7 +85,7 @@
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
               <!-- Moon Icon (shown in bright mode) -->
-              <svg class="theme-icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
               <span class="theme-toggle-text">Theme</span>
@@ -94,28 +103,62 @@
     <!-- =============================================================== -->
     <section class="hero-section" id="hero" aria-label="Introduction">
       <div class="container hero-container">
-        <!-- Eyebrow: Role & Location -->
-        <p class="hero-eyebrow">
-          <span>Computer Science &amp; IoT Undergraduate &middot; 3D Explorer</span>
-          <span class="eyebrow-divider" aria-hidden="true">&middot;</span>
-          <span>Hyderabad, India</span>
-        </p>
+        
+        <!-- Left: Text content & CTAs -->
+        <div class="hero-content">
+          <!-- Active Status Badge -->
+          <div class="hero-status-pill">
+            <span class="status-pulse-dot" aria-hidden="true"></span>
+            <span>Available for internships &amp; collaborations</span>
+          </div>
 
-        <!-- Big Serif Headline -->
-        <h1 class="hero-headline">
-          Building interactive web experiences, exploring 3D technologies, and solving problems through code.
-        </h1>
+          <!-- Eyebrow: Role & Location -->
+          <p class="hero-eyebrow">
+            <span>Computer Science &amp; IoT Undergraduate</span>
+            <span class="eyebrow-divider" aria-hidden="true">&middot;</span>
+            <span>Hyderabad, India</span>
+          </p>
 
-        <!-- Short intro -->
-        <p class="hero-intro">
-          I'm Akshith Bandi, a Computer Science and IoT student passionate about creating functional digital products, experimenting with modern web and AI tools, and looking for opportunities to learn, collaborate, and grow.
-        </p>
+          <!-- Big Headline with gradient accents -->
+          <h1 class="hero-headline">
+            Building <span class="text-highlight">interactive web experiences</span>, exploring 3D, and solving problems through code.
+          </h1>
 
-        <!-- Call to Action Buttons -->
-        <div class="hero-actions">
-          <a href="#work" class="btn btn-primary">See my work</a>
-          <a href="#contact" class="btn btn-secondary">Get in touch</a>
+          <!-- Short intro -->
+          <p class="hero-intro">
+            I'm <strong>Akshith Bandi</strong>, a Computer Science and IoT student passionate about creating functional digital products, experimenting with modern web and AI tools, and looking for opportunities to learn, collaborate, and grow.
+          </p>
+
+          <!-- Call to Action Buttons -->
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-primary">
+              <span>See my work</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Get in touch</a>
+            <button type="button" class="btn btn-ghost copy-email-btn" data-email="akshitbandi.dev@gmail.com" title="Copy email address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-label">Copy Email</span>
+            </button>
+          </div>
         </div>
+
+        <!-- Right: Profile Card Image -->
+        <div class="hero-visual reveal-on-scroll">
+          <div class="hero-image-wrapper">
+            <div class="hero-image-aura" aria-hidden="true"></div>
+            <div class="hero-image-card">
+              <img src="profile.jpg" alt="Akshith Bandi in a black suit blazer" class="hero-profile-img" width="380" height="480">
+              <div class="hero-image-overlay">
+                <div class="hero-image-tag">
+                  <span class="tag-name">Akshith Bandi</span>
+                  <span class="tag-role">CSE &middot; IoT Student</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -128,52 +171,57 @@
     <section class="section work-section" id="work" aria-labelledby="work-heading">
       <div class="container">
         <div class="section-header">
+          <div class="section-label">Portfolio</div>
           <h2 id="work-heading" class="section-title">Selected Work</h2>
-          <p class="section-subtitle">Projects and prototypes focused on AI computer vision, interactive applications, and real-world utility.</p>
+          <p class="section-subtitle">Projects and prototypes focused on AI computer vision, human-computer interfaces, and real-world utility.</p>
         </div>
 
-        <!-- Clean Project List (Not a grid of cards) -->
+        <!-- Project Cards List -->
         <div class="project-list">
           
           <!-- Project 1: RxLens -->
-          <article class="project-item reveal-on-scroll">
-            <div class="project-meta">
-              <span class="project-year">2026</span>
-              <div class="project-links">
-                <span class="project-status-badge">Prototype &middot; In Development</span>
+          <article class="project-card reveal-on-scroll" data-tilt>
+            <div class="project-card-inner">
+              <div class="project-meta">
+                <span class="project-year">2026</span>
+                <span class="project-status-badge status-active">
+                  <span class="badge-dot"></span> Prototype &middot; In Development
+                </span>
               </div>
+              <h3 class="project-title">RxLens &mdash; AI-Powered Prescription Reader</h3>
+              <p class="project-description">
+                An AI-powered healthcare application designed to extract and organize medicine information from prescription images. It leverages AI vision technology to identify medicine names, strengths, dosages, frequency, and instructions while highlighting uncertain information for verification.
+              </p>
+              <ul class="tech-tags" aria-label="Technologies used in RxLens">
+                <li class="tech-tag tag-ai">Gemini Vision API</li>
+                <li class="tech-tag tag-js">JavaScript (ES6+)</li>
+                <li class="tech-tag tag-web">HTML5</li>
+                <li class="tech-tag tag-web">CSS3</li>
+                <li class="tech-tag tag-accent">Healthcare AI</li>
+              </ul>
             </div>
-            <h3 class="project-title">RxLens &mdash; AI-Powered Prescription Reader</h3>
-            <p class="project-description">
-              An AI-powered healthcare application designed to extract and organize medicine information from prescription images. It leverages AI vision technology to identify medicine names, strengths, dosages, frequency, and instructions while highlighting uncertain information for verification.
-            </p>
-            <ul class="tech-tags" aria-label="Technologies used in RxLens">
-              <li class="tech-tag">Gemini Vision API</li>
-              <li class="tech-tag">JavaScript</li>
-              <li class="tech-tag">HTML5</li>
-              <li class="tech-tag">CSS3</li>
-              <li class="tech-tag">AI Healthcare</li>
-            </ul>
           </article>
 
           <!-- Project 2: AI-Based Hand Gesture Video Control System -->
-          <article class="project-item reveal-on-scroll">
-            <div class="project-meta">
-              <span class="project-year">2026</span>
-              <div class="project-links">
-                <span class="project-status-badge">Project Concept &middot; In Development</span>
+          <article class="project-card reveal-on-scroll" data-tilt>
+            <div class="project-card-inner">
+              <div class="project-meta">
+                <span class="project-year">2026</span>
+                <span class="project-status-badge status-planning">
+                  <span class="badge-dot"></span> Concept &middot; In Development
+                </span>
               </div>
+              <h3 class="project-title">AI-Based Hand Gesture Video Control System</h3>
+              <p class="project-description">
+                A hands-free video control system that allows users to interact with media playback using real-time hand gestures. It focuses on controlling actions such as play, pause, resume, and volume adjustment without touching a physical keyboard or remote.
+              </p>
+              <ul class="tech-tags" aria-label="Technologies used in AI Gesture Video Control">
+                <li class="tech-tag tag-python">Python</li>
+                <li class="tech-tag tag-ai">Computer Vision</li>
+                <li class="tech-tag tag-accent">Gesture Recognition</li>
+                <li class="tech-tag tag-web">HCI</li>
+              </ul>
             </div>
-            <h3 class="project-title">AI-Based Hand Gesture Video Control System</h3>
-            <p class="project-description">
-              A hands-free video control system that allows users to interact with media playback using real-time hand gestures. It focuses on controlling actions such as play, pause, resume, and volume adjustment without touching a physical keyboard or remote.
-            </p>
-            <ul class="tech-tags" aria-label="Technologies used in AI Gesture Video Control">
-              <li class="tech-tag">Python</li>
-              <li class="tech-tag">Computer Vision</li>
-              <li class="tech-tag">Gesture Recognition</li>
-              <li class="tech-tag">HCI</li>
-            </ul>
           </article>
 
         </div>
@@ -189,40 +237,68 @@
     <section class="section about-section" id="about" aria-labelledby="about-heading">
       <div class="container">
         <div class="section-header">
+          <div class="section-label">Background</div>
           <h2 id="about-heading" class="section-title">About Me</h2>
         </div>
 
         <div class="about-grid">
-          <!-- Left Column: 2 short paragraphs -->
+          <!-- Left Column: 2 short paragraphs & Quick Highlights -->
           <div class="about-text reveal-on-scroll">
             <p>
-              I'm a first-year Computer Science and Engineering student specializing in Internet of Things (IoT) at Malla Reddy Vishwavidyapeeth. I'm passionate about technology, programming, and creative development. I enjoy turning ideas into functional digital experiences, experimenting with new technologies, and solving problems through practical projects.
+              I'm a first-year Computer Science and Engineering student specializing in <strong>Internet of Things (IoT)</strong> at <strong>Malla Reddy Vishwavidyapeeth</strong>. I'm passionate about technology, programming, and creative development. I enjoy turning ideas into functional digital experiences, experimenting with new technologies, and solving problems through practical projects.
             </p>
             <p>
-              Currently, I'm exploring Full-Stack Development, modern web technologies, Artificial Intelligence, and 3D web experiences. I enjoy creating interactive websites and experimenting with projects that combine creativity and technology. I'm continuously developing my skills and looking forward to internships, collaborations, and opportunities to gain real-world experience.
+              Currently, I'm exploring <strong>Full-Stack Development</strong>, modern web technologies, <strong>Artificial Intelligence</strong>, and <strong>3D web experiences</strong>. I enjoy creating interactive websites and experimenting with projects that combine creativity and technology. I'm continuously developing my skills and looking forward to internships, collaborations, and opportunities to gain real-world experience.
             </p>
+
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <span class="highlight-number">1st</span>
+                <span class="highlight-label">Year B.Tech (CSE-IoT)</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-number">2+</span>
+                <span class="highlight-label">Active AI Projects</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-number">3D</span>
+                <span class="highlight-label">Creative Web Focus</span>
+              </div>
+            </div>
           </div>
 
           <!-- Right Column: Skills list grouped by category -->
           <div class="about-skills reveal-on-scroll">
             
-            <div class="skill-category">
-              <h3 class="skill-category-title">Languages</h3>
-              <p class="skill-category-items">Python, C, JavaScript</p>
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <span class="skill-icon" aria-hidden="true">⚡</span>
+                <h3 class="skill-category-title">Languages</h3>
+              </div>
+              <p class="skill-category-items">Python, C, JavaScript (ES6+)</p>
             </div>
 
-            <div class="skill-category">
-              <h3 class="skill-category-title">Frontend</h3>
-              <p class="skill-category-items">HTML5, CSS3, JavaScript (ES6+)</p>
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <span class="skill-icon" aria-hidden="true">🎨</span>
+                <h3 class="skill-category-title">Frontend</h3>
+              </div>
+              <p class="skill-category-items">HTML5, CSS3, Modern UI, Responsive Design, 3D Web Concepts</p>
             </div>
 
-            <div class="skill-category">
-              <h3 class="skill-category-title">Backend</h3>
-              <p class="skill-category-items">Currently Exploring (Node.js &amp; Modern Backend Architectures)</p>
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <span class="skill-icon" aria-hidden="true">⚙️</span>
+                <h3 class="skill-category-title">Backend</h3>
+              </div>
+              <p class="skill-category-items">Currently Exploring (Node.js &amp; Modern Backend Architecture)</p>
             </div>
 
-            <div class="skill-category">
-              <h3 class="skill-category-title">Tools &amp; Platforms</h3>
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <span class="skill-icon" aria-hidden="true">🛠️</span>
+                <h3 class="skill-category-title">Tools &amp; Platforms</h3>
+              </div>
               <p class="skill-category-items">Git, GitHub, Visual Studio Code, Google Gemini, AI Development Tools, Antigravity</p>
             </div>
 
@@ -240,6 +316,7 @@
     <section class="section education-section" id="education" aria-labelledby="education-heading">
       <div class="container">
         <div class="section-header">
+          <div class="section-label">Academics</div>
           <h2 id="education-heading" class="section-title">Education &amp; Learning</h2>
           <p class="section-subtitle">Academic foundations, ongoing coursework, and active technical domains.</p>
         </div>
@@ -257,7 +334,7 @@
               <p class="timeline-institution">Malla Reddy Vishwavidyapeeth &middot; Hyderabad, India</p>
               <p class="timeline-details">
                 <strong>Academic Standing:</strong> First Year Undergraduate<br>
-                <strong>Specialization:</strong> Internet of Things (IoT)<br>
+                <strong>Specialization:</strong> Internet of Things (CSE &ndash; IoT)<br>
                 <strong>Relevant Coursework:</strong> Programming Fundamentals, Engineering Mathematics, Web Development, Internet of Things.
               </p>
             </div>
@@ -269,11 +346,11 @@
               <span>Current Focus</span>
             </div>
             <div class="timeline-content">
-              <span class="timeline-badge">Self-Directed Learning</span>
+              <span class="timeline-badge badge-exploration">Exploration</span>
               <h3 class="timeline-title">Full-Stack Development, 3D Web &amp; AI Integration</h3>
               <p class="timeline-institution">Independent Projects &amp; Practical Exploration</p>
               <p class="timeline-details">
-                Active hands-on exploration of Gemini Vision API, computer vision algorithms, modern frontend design principles, and immersive 3D web interfaces.
+                Hands-on practical development focusing on Google Gemini Vision API, computer vision algorithms, modern frontend design principles, and immersive 3D interactive web experiences.
               </p>
             </div>
           </div>
@@ -291,6 +368,7 @@
     <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="section-header">
+          <div class="section-label">Connect</div>
           <h2 id="contact-heading" class="section-title">Get in Touch</h2>
           <p class="section-subtitle">
             Whether you have an internship opportunity, an idea for collaboration, or just want to connect &mdash; feel free to reach out.
@@ -298,12 +376,18 @@
         </div>
 
         <div class="contact-wrapper">
-          <!-- Direct Email Link Fallback -->
-          <div class="contact-direct">
-            <p>Prefer to send an email directly? Reach me at:</p>
-            <a href="mailto:akshitbandi.carrer@gmail.com" class="direct-email-link">
-              akshitbandi.carrer@gmail.com &nearr;
-            </a>
+          <!-- Direct Email Box -->
+          <div class="contact-direct-card">
+            <div class="direct-card-info">
+              <span class="direct-card-title">Direct Email</span>
+              <a href="mailto:akshitbandi.dev@gmail.com" class="direct-email-link">
+                akshitbandi.dev@gmail.com
+              </a>
+            </div>
+            <button type="button" class="btn btn-secondary copy-email-btn" data-email="akshitbandi.dev@gmail.com">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-label">Copy</span>
+            </button>
           </div>
 
           <!-- Contact Form -->
@@ -365,6 +449,7 @@
             <div class="form-actions">
               <button type="submit" id="submit-btn" class="btn btn-primary">
                 <span class="btn-text">Send Message</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
             </div>
 
@@ -383,9 +468,10 @@
   <!-- ================================================================= -->
   <footer class="site-footer">
     <div class="container footer-container">
-      <p class="footer-copy">
-        &copy; <span id="current-year">2026</span> Akshith Bandi. All rights reserved.
-      </p>
+      <div class="footer-brand">
+        <span class="footer-name">Akshith Bandi</span>
+        <p class="footer-tagline">CSE &middot; IoT Undergraduate | Aspiring Full-Stack &amp; 3D Developer</p>
+      </div>
 
       <ul class="footer-links">
         <li>
@@ -395,11 +481,18 @@
           <a href="https://www.linkedin.com/in/akshit-bandi-70b6323b9" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
         </li>
         <li>
-          <a href="mailto:akshitbandi.carrer@gmail.com" class="footer-link">Email</a>
+          <a href="mailto:akshitbandi.dev@gmail.com" class="footer-link">Email</a>
         </li>
       </ul>
+
+      <p class="footer-copy">
+        &copy; <span id="current-year">2026</span> Akshith Bandi. Hand-crafted with modern web standards.
+      </p>
     </div>
   </footer>
+
+  <!-- Toast Notification for Copy Actions -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <!-- Vanilla JavaScript -->
   <script src="script.js"></script>

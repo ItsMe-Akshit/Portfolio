@@ -136,10 +136,6 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <a href="#contact" class="btn btn-secondary">Get in touch</a>
-            <button type="button" class="btn btn-ghost copy-email-btn" data-email="akshitbandi.dev@gmail.com" title="Copy email address">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span class="copy-label">Copy Email</span>
-            </button>
           </div>
         </div>
 
@@ -376,20 +372,6 @@
         </div>
 
         <div class="contact-wrapper">
-          <!-- Direct Email Box -->
-          <div class="contact-direct-card">
-            <div class="direct-card-info">
-              <span class="direct-card-title">Direct Email</span>
-              <a href="mailto:akshitbandi.dev@gmail.com" class="direct-email-link">
-                akshitbandi.dev@gmail.com
-              </a>
-            </div>
-            <button type="button" class="btn btn-secondary copy-email-btn" data-email="akshitbandi.dev@gmail.com">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span class="copy-label">Copy</span>
-            </button>
-          </div>
-
           <!-- Contact Form -->
           <form id="contact-form" class="contact-form" novalidate>
             
@@ -399,17 +381,21 @@
               <input type="text" id="form-bot-check" name="_gotcha" tabindex="-1" autocomplete="off">
             </div>
 
-            <!-- Name (Optional) -->
+            <!-- Name (Mandatory) -->
             <div class="form-group">
               <label for="form-name" class="form-label">
-                Name <span class="label-optional">(optional)</span>
+                Name <span class="label-required" aria-hidden="true">*</span>
               </label>
               <input 
                 type="text" 
                 id="form-name" 
                 name="name" 
                 class="form-input" 
-                placeholder="Your name">
+                placeholder="Your full name"
+                required
+                minlength="2"
+                aria-describedby="name-error">
+              <span class="field-error" id="name-error" aria-live="polite"></span>
             </div>
 
             <!-- Email (Required) -->
@@ -491,7 +477,35 @@
     </div>
   </footer>
 
-  <!-- Toast Notification for Copy Actions -->
+  <!-- ================================================================= -->
+  <!-- GITHUB STAR PROMPT MODAL (Wise & Professional)                    -->
+  <!-- ================================================================= -->
+  <div id="star-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="star-modal-title">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close dialog">&times;</button>
+      
+      <div class="modal-badge">
+        <span class="modal-star-icon" aria-hidden="true">★</span>
+        <span>Support on GitHub</span>
+      </div>
+
+      <h3 id="star-modal-title" class="modal-title">Enjoying the portfolio?</h3>
+      <p class="modal-description">
+        If you like my projects (like <strong>RxLens</strong> and <strong>Gesture Control</strong>) or this website, would you mind leaving a star on GitHub? It truly means a lot to an aspiring developer!
+      </p>
+
+      <div class="modal-actions">
+        <a href="https://github.com/ItsMe-Akshit/Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="modal-star-btn">
+          <span>⭐ Star on GitHub</span>
+        </a>
+        <button type="button" class="btn btn-secondary" id="modal-dismiss-btn">
+          Maybe Later
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification for Actions -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <!-- Vanilla JavaScript -->

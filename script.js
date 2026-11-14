@@ -4,8 +4,8 @@
  * ============================================================================
  */
 
-// Formspree Form ID configuration
-const FORM_ENDPOINT = "https://formspree.io/f/YOUR_ID";
+// FormSubmit endpoint delivering directly to your Gmail inbox
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/akshitbandi.dev@gmail.com";
 
 document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initContactForm();
   initDynamicYear();
-  initCopyEmail();
   initCardTilt();
+  initStarModal();
 });
 
 // ============================================================================
@@ -25,7 +25,6 @@ function initThemeToggle() {
   const toggleBtn = document.getElementById("theme-toggle");
   if (!toggleBtn) return;
 
-  // Explicitly default to bright 'light' mode
   const savedTheme = localStorage.getItem("portfolio-theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
 
@@ -61,9 +60,7 @@ function initMobileNav() {
   toggleBtn.addEventListener("click", toggleMenu);
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      closeMenu();
-    });
+    link.addEventListener("click", closeMenu);
   });
 
   document.addEventListener("keydown", (e) => {
@@ -151,48 +148,9 @@ function initScrollReveal() {
 }
 
 // ============================================================================
-// 5. ONE-CLICK EMAIL COPY & TOAST NOTIFICATION
-// ============================================================================
-function initCopyEmail() {
-  const copyButtons = document.querySelectorAll(".copy-email-btn");
-  const toast = document.getElementById("toast");
-
-  function showToast(message) {
-    if (!toast) return;
-    toast.textContent = message;
-    toast.classList.add("toast-visible");
-    setTimeout(() => {
-      toast.classList.remove("toast-visible");
-    }, 2500);
-  }
-
-  copyButtons.forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const email = btn.getAttribute("data-email") || "akshitbandi.dev@gmail.com";
-      try {
-        await navigator.clipboard.writeText(email);
-        showToast("Email copied to clipboard: " + email);
-        const label = btn.querySelector(".copy-label");
-        if (label) {
-          const original = label.textContent;
-          label.textContent = "Copied! ✓";
-          setTimeout(() => {
-            label.textContent = original;
-          }, 2000);
-        }
-      } catch (err) {
-        // Fallback for older browsers
-        window.location.href = "mailto:" + email;
-      }
-    });
-  });
-}
-
-// ============================================================================
-// 6. SUBTLE CARD 3D TILT EFFECT
+// 5. SUBTLE CARD 3D TILT EFFECT
 // ============================================================================
 function initCardTilt() {
-  // Respect reduced motion
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const cards = document.querySelectorAll("[data-tilt]");
@@ -207,7 +165,7 @@ function initCardTilt() {
       const deltaX = (x - centerX) / centerX;
       const deltaY = (y - centerY) / centerY;
 
-      card.style.transform = `perspective(1000px) rotateY(${deltaX * 3}deg) rotateX(${-deltaY * 3}deg) translateY(-4px)`;
+      card.style.transform = `perspective(1000px) rotateY(${deltaX * 3}deg) rotateX(${-deltaY * 3}deg) translateY(-5px)`;
     });
 
     card.addEventListener("mouseleave", () => {
@@ -217,7 +175,73 @@ function initCardTilt() {
 }
 
 // ============================================================================
-// 7. CONTACT FORM HANDLING
+// 6. GITHUB STAR PROMPT MODAL (Wise & Professional Pop-up)
+// ============================================================================
+function initStarModal() {
+  const modal = document.getElementById("star-modal");
+  const closeBtn = document.getElementById("modal-close-btn");
+  const dismissBtn = document.getElementById("modal-dismiss-btn");
+  const starBtn = document.getElementById("modal-star-btn");
+
+  if (!modal) return;
+
+  const storageKey = "akshith_portfolio_github_star_prompt";
+  const userAction = localStorage.getItem(storageKey);
+
+  // If user already responded (starred or dismissed), don't disturb them
+  if (userAction === "starred" || userAction === "dismissed") {
+    return;
+  }
+
+  function openModal() {
+    modal.classList.add("is-active");
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  function closeModal(actionType) {
+    modal.classList.remove("is-active");
+    modal.setAttribute("aria-hidden", "true");
+    if (actionType) {
+      localStorage.setItem(storageKey, actionType);
+    }
+  }
+
+  // Gracefully show popup 3.5 seconds after arrival so visitor first enjoys the page
+  setTimeout(() => {
+    openModal();
+  }, 3500);
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => closeModal("dismissed"));
+  }
+
+  if (dismissBtn) {
+    dismissBtn.addEventListener("click", () => closeModal("dismissed"));
+  }
+
+  if (starBtn) {
+    starBtn.addEventListener("click", () => {
+      closeModal("starred");
+    });
+  }
+
+  // Close when clicking backdrop outside the card
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal("dismissed");
+    }
+  });
+
+  // Close with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-active")) {
+      closeModal("dismissed");
+    }
+  });
+}
+
+// ============================================================================
+// 7. CONTACT FORM HANDLING (Direct Gmail Delivery via FormSubmit)
 // ============================================================================
 function initContactForm() {
   const form = document.getElementById("contact-form");
@@ -226,6 +250,7 @@ function initContactForm() {
   const nameInput = document.getElementById("form-name");
   const emailInput = document.getElementById("form-email");
   const messageInput = document.getElementById("form-message");
+  const nameError = document.getElementById("name-error");
   const emailError = document.getElementById("email-error");
   const messageError = document.getElementById("message-error");
   const submitBtn = document.getElementById("submit-btn");
@@ -233,6 +258,11 @@ function initContactForm() {
   const statusDiv = document.getElementById("form-status");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  nameInput.addEventListener("input", () => {
+    nameInput.classList.remove("is-invalid");
+    if (nameError) nameError.textContent = "";
+  });
 
   emailInput.addEventListener("input", () => {
     emailInput.classList.remove("is-invalid");
@@ -249,11 +279,14 @@ function initContactForm() {
 
     statusDiv.className = "form-status";
     statusDiv.textContent = "";
+    if (nameError) nameError.textContent = "";
     emailError.textContent = "";
     messageError.textContent = "";
+    nameInput.classList.remove("is-invalid");
     emailInput.classList.remove("is-invalid");
     messageInput.classList.remove("is-invalid");
 
+    // Spam honeypot
     const honeypot = form.querySelector('input[name="_gotcha"]');
     if (honeypot && honeypot.value.trim() !== "") {
       displayStatus("success", "Thank you for reaching out! Your message has been sent.");
@@ -261,9 +294,21 @@ function initContactForm() {
       return;
     }
 
+    // Validation (Name, Email, Message all mandatory)
     let hasError = false;
+    const nameVal = nameInput.value.trim();
     const emailVal = emailInput.value.trim();
     const messageVal = messageInput.value.trim();
+
+    if (!nameVal) {
+      if (nameError) nameError.textContent = "Please enter your name.";
+      nameInput.classList.add("is-invalid");
+      hasError = true;
+    } else if (nameVal.length < 2) {
+      if (nameError) nameError.textContent = "Name must be at least 2 characters.";
+      nameInput.classList.add("is-invalid");
+      hasError = true;
+    }
 
     if (!emailVal) {
       emailError.textContent = "Please enter your email address.";
@@ -286,7 +331,9 @@ function initContactForm() {
     }
 
     if (hasError) {
-      if (emailInput.classList.contains("is-invalid")) {
+      if (nameInput.classList.contains("is-invalid")) {
+        nameInput.focus();
+      } else if (emailInput.classList.contains("is-invalid")) {
         emailInput.focus();
       } else {
         messageInput.focus();
@@ -294,18 +341,15 @@ function initContactForm() {
       return;
     }
 
-    if (FORM_ENDPOINT.includes("YOUR_ID")) {
-      displayStatus(
-        "error",
-        "Form endpoint is not configured yet. Please email me directly at akshitbandi.dev@gmail.com, or paste your Formspree ID into script.js."
-      );
-      return;
-    }
-
+    // Payload for FormSubmit (sets sender name and visitor's email as Reply-To)
     const payload = {
-      name: nameInput.value.trim(),
+      name: nameVal,
       email: emailVal,
-      message: messageVal
+      message: messageVal,
+      _subject: `New Portfolio Message from ${nameVal}`,
+      _replyto: emailVal,
+      _template: "table",
+      _captcha: "false"
     };
 
     submitBtn.disabled = true;
@@ -316,31 +360,31 @@ function initContactForm() {
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify(payload)
       });
 
       const responseData = await response.json().catch(() => null);
 
-      if (response.ok) {
+      if (response.ok || (responseData && responseData.success === "true")) {
         displayStatus(
           "success",
-          "Thank you! Your message was sent successfully. I will get back to you shortly."
+          `Thank you, ${nameVal}! Your message has been sent directly to my Gmail. I will reply to ${emailVal} soon.`
         );
         form.reset();
       } else {
-        let errorMsg = "Something went wrong while sending your message. Please try again or use direct email.";
-        if (responseData && responseData.errors && responseData.errors.length > 0) {
-          errorMsg = responseData.errors.map((err) => err.message).join(", ");
+        let errorMsg = "Something went wrong sending your message. Please try again in a moment.";
+        if (responseData && responseData.message) {
+          errorMsg = responseData.message;
         }
         displayStatus("error", errorMsg);
       }
     } catch (err) {
       displayStatus(
         "error",
-        "Network error: Unable to reach the contact service. Please email me directly at akshitbandi.dev@gmail.com."
+        "Network error: Unable to send message. Please check your internet connection and try again."
       );
     } finally {
       submitBtn.disabled = false;
